@@ -14,7 +14,14 @@ import { ROUTES } from "@/config/routes";
 import { formatDate } from "@/lib/format";
 import type { ObjectRow } from "@/types";
 
-export function ObjectsTable({ objects }: { objects: ObjectRow[] }) {
+import { DeleteObjectButton } from "./delete-object-button";
+
+type ObjectsTableProps = {
+  objects: ObjectRow[];
+  canDelete: boolean;
+};
+
+export function ObjectsTable({ objects, canDelete }: ObjectsTableProps) {
   return (
     <div className="overflow-hidden rounded-xl border bg-background">
       <Table>
@@ -23,7 +30,7 @@ export function ObjectsTable({ objects }: { objects: ObjectRow[] }) {
             <TableHead>Название</TableHead>
             <TableHead>Адрес</TableHead>
             <TableHead className="hidden sm:table-cell">Создан</TableHead>
-            <TableHead className="w-10" />
+            <TableHead className={canDelete ? "w-24" : "w-10"} />
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -44,7 +51,12 @@ export function ObjectsTable({ objects }: { objects: ObjectRow[] }) {
                 {formatDate(object.created_at)}
               </TableCell>
               <TableCell>
-                <ChevronRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+                <div className="flex items-center justify-end gap-1">
+                  {canDelete && (
+                    <DeleteObjectButton object={object} variant="icon" />
+                  )}
+                  <ChevronRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+                </div>
               </TableCell>
             </TableRow>
           ))}

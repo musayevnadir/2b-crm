@@ -55,7 +55,7 @@ export default async function ObjectsPage() {
           }
         />
       ) : (
-        <ObjectsTable objects={response.data} />
+        <ObjectsTable objects={response.data} canDelete={isManager} />
       )}
     </Page>
   );
