@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "type-check": "tsc --noEmit",
+    "type-check": "next typegen && tsc --noEmit",
     "gen-types": "dotenv -e .env.development -- sh -c 'supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > src/types/database.generated.ts'",
     "format": "prettier --write .",
     "check": "yarn type-check && yarn lint",
