@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 
 import { AppHeader } from "@/components/layout/app-header";
 import { ROUTES } from "@/config/routes";
-import { getCurrentProfile } from "@/lib/auth/get-current-profile";
+import { getCurrentProfile } from "@/services/session";
 
 export default async function DashboardLayout({
   children,

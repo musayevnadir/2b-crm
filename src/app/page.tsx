@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { ROUTES } from "@/config/routes";
-import { getCurrentProfile } from "@/lib/auth/get-current-profile";
+import { getCurrentProfile } from "@/services/session";
 
 export default async function HomePage() {
   const profile = await getCurrentProfile();

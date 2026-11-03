@@ -7,10 +7,10 @@ import { EmptyState } from "@/components/layout/empty-state";
 import { Page } from "@/components/layout/page";
 import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
-import { getCurrentProfile } from "@/lib/auth/get-current-profile";
 import { createClient } from "@/lib/supabase/server";
 import { ObjectFormDialog, ObjectsTable } from "@/modules/objects";
 import { ObjectsAPI } from "@/services/api/objects.api";
+import { getCurrentProfile } from "@/services/session";
 
 export const metadata: Metadata = { title: "Объекты · Объекты и задачи" };
 

@@ -8,10 +8,10 @@ import { EmptyState } from "@/components/layout/empty-state";
 import { Page } from "@/components/layout/page";
 import { PageHeader } from "@/components/layout/page-header";
 import { ROUTES } from "@/config/routes";
-import { getCurrentProfile } from "@/lib/auth/get-current-profile";
 import { createClient } from "@/lib/supabase/server";
 import { TasksTable } from "@/modules/tasks";
 import { TasksAPI } from "@/services/api/tasks.api";
+import { getCurrentProfile } from "@/services/session";
 
 export const metadata: Metadata = { title: "Мои задачи · Объекты и задачи" };
 
