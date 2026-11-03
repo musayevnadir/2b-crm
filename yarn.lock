@@ -20,8 +20,10 @@ __metadata:
     dotenv-cli: ^11.1.0
     eslint: ^9
     eslint-config-next: 16.4.4
+    eslint-plugin-simple-import-sort: ^14.0.0
     lucide-react: ^1.67.0
     next: 16.4.4
+    prettier: ^3.9.10
     radix-ui: ^1.8.1
     react: 19.3.0
     react-dom: 19.3.0
@@ -3665,6 +3667,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-simple-import-sort@npm:^14.0.0":
+  version: 14.0.0
+  resolution: "eslint-plugin-simple-import-sort@npm:14.0.0"
+  peerDependencies:
+    eslint: ">=5.0.0"
+  checksum: 814050cc08f309f4ab86041f543ce49edb9437051dae82af31634cc4812ae896d598d63788be450f8bdaefc4d618c046760aa5303dee32b5c3ff64627eaae97a
+  languageName: node
+  linkType: hard
+
 "eslint-scope@npm:^8.4.0":
   version: 8.4.0
   resolution: "eslint-scope@npm:8.4.0"
@@ -5119,6 +5130,15 @@ __metadata:
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
   checksum: cd192ec0d0a8e4c6da3bb80e4f62afe336df3f76271ac6deb0e6a36187133b6073a19e9727a1ff108cd8b9982e4768850d413baa71214dd80c7979617dca827a
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^3.9.10":
+  version: 3.9.10
+  resolution: "prettier@npm:3.9.10"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: a031d6ce0d077d46a47424eb367708c426ef3d5a85e06eace273cb1fa9823fd3c5f8b6af7f1f4715474b5f98b7fdfa650b72d97e2742f16ff27006dc0a136d8a
   languageName: node
   linkType: hard
 

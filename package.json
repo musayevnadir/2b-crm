@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "type-check": "tsc --noEmit",
-    "gen-types": "dotenv -e .env.development -- sh -c 'supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > src/types/database.generated.ts'"
+    "gen-types": "dotenv -e .env.development -- sh -c 'supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > src/types/database.generated.ts'",
+    "format": "prettier --write .",
+    "check": "yarn type-check && yarn lint"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
@@ -31,6 +33,8 @@
     "dotenv-cli": "^11.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.4.4",
+    "eslint-plugin-simple-import-sort": "^14.0.0",
+    "prettier": "^3.9.10",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
