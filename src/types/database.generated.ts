@@ -167,7 +167,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      change_task_status: {
+        Args: {
+          p_comment?: string
+          p_status: Database["public"]["Enums"]["task_status"]
+          p_task_id: string
+        }
+        Returns: undefined
+      }
+      is_executor: { Args: { p_profile_id: string }; Returns: boolean }
+      is_manager: { Args: never; Returns: boolean }
     }
     Enums: {
       task_status: "new" | "in_progress" | "review" | "accepted" | "rework"
