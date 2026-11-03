@@ -15,7 +15,7 @@ export default async function DashboardLayout({
   return (
     <div className="flex min-h-full flex-1 flex-col bg-muted/30">
       <AppHeader profile={profile} />
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
+      <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 pt-8 pb-12">
         {children}
       </main>
     </div>
