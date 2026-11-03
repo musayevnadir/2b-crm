@@ -1,5 +1,7 @@
 import type { PersonShort } from "@/types";
 
+const TIME_ZONE = "Europe/Moscow";
+
 export function fullName(person: PersonShort | null | undefined) {
   if (!person) return "—";
   const name = `${person.first_name} ${person.last_name}`.trim();
@@ -13,6 +15,7 @@ export function initials(person: PersonShort) {
 
 export function formatDate(value: string) {
   return new Date(value).toLocaleDateString("ru-RU", {
+    timeZone: TIME_ZONE,
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
@@ -21,6 +24,7 @@ export function formatDate(value: string) {
 
 export function formatDateTime(value: string) {
   return new Date(value).toLocaleString("ru-RU", {
+    timeZone: TIME_ZONE,
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
