@@ -55,6 +55,23 @@ export const TasksAPI = {
     }
   },
 
+  async countByAssigneeAndStatuses(
+    client: DbClient,
+    assigneeId: string,
+    statuses: TaskStatus[],
+  ): Promise<IResponse<number>> {
+    try {
+      const { count, error } = await client
+        .from(EndpointResources.tables.tasks)
+        .select("id", { count: "exact", head: true })
+        .eq("assignee_id", assigneeId)
+        .in("status", statuses);
+      return responseHandler({ data: count ?? 0, error });
+    } catch (e) {
+      return errorHandler(e);
+    }
+  },
+
   async getById(
     client: DbClient,
     id: string,

@@ -1,15 +1,19 @@
+import { Suspense } from "react";
 import Link from "next/link";
 
 import { ROUTES } from "@/config/routes";
 import type { Profile } from "@/types";
 
 import { Logo } from "./logo";
-import { NavLink } from "./nav-link";
+import { MainNav } from "./main-nav";
 import { UserMenu } from "./user-menu";
 
-export function AppHeader({ profile }: { profile: Profile }) {
-  const isManager = profile.role === "manager";
+type AppHeaderProps = {
+  profile: Profile;
+  todoCount: number;
+};
 
+export function AppHeader({ profile, todoCount }: AppHeaderProps) {
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-4">
@@ -17,10 +21,9 @@ export function AppHeader({ profile }: { profile: Profile }) {
           <Logo withText={false} className="sm:hidden" />
           <Logo className="hidden sm:flex" />
         </Link>
-        <nav className="flex items-center gap-1">
-          {!isManager && <NavLink href={ROUTES.myTasks}>Мои задачи</NavLink>}
-          <NavLink href={ROUTES.objects}>Объекты</NavLink>
-        </nav>
+        <Suspense>
+          <MainNav role={profile.role} todoCount={todoCount} />
+        </Suspense>
         <div className="ml-auto">
           <UserMenu profile={profile} />
         </div>
