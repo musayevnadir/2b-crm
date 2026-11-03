@@ -13,7 +13,8 @@
     "check": "yarn type-check && yarn lint",
     "db:push": "supabase db push && yarn gen-types",
     "db:new": "supabase migration new",
-    "db:status": "supabase migration list"
+    "db:status": "supabase migration list",
+    "test:security": "dotenv -e .env.development -- node scripts/security-check.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^7.0.2",
