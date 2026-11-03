@@ -6,6 +6,11 @@ export function fullName(person: PersonShort | null | undefined) {
   return name || person.email;
 }
 
+export function initials(person: PersonShort) {
+  const letters = `${person.first_name.charAt(0)}${person.last_name.charAt(0)}`;
+  return (letters || person.email.charAt(0)).toUpperCase();
+}
+
 export function formatDate(value: string) {
   return new Date(value).toLocaleDateString("ru-RU", {
     day: "2-digit",
