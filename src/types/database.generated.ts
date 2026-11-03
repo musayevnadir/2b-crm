@@ -62,6 +62,51 @@ export type Database = {
         }
         Relationships: []
       }
+      task_history: {
+        Row: {
+          changed_by: string
+          comment: string | null
+          created_at: string
+          from_status: Database["public"]["Enums"]["task_status"] | null
+          id: string
+          task_id: string
+          to_status: Database["public"]["Enums"]["task_status"]
+        }
+        Insert: {
+          changed_by: string
+          comment?: string | null
+          created_at?: string
+          from_status?: Database["public"]["Enums"]["task_status"] | null
+          id?: string
+          task_id: string
+          to_status: Database["public"]["Enums"]["task_status"]
+        }
+        Update: {
+          changed_by?: string
+          comment?: string | null
+          created_at?: string
+          from_status?: Database["public"]["Enums"]["task_status"] | null
+          id?: string
+          task_id?: string
+          to_status?: Database["public"]["Enums"]["task_status"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "task_history_changed_by_fkey"
+            columns: ["changed_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "task_history_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       tasks: {
         Row: {
           assignee_id: string

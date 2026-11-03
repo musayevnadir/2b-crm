@@ -24,3 +24,7 @@ export type ObjectUpdate = TablesUpdate<"objects">;
 export type Task = Tables<"tasks">;
 export type TaskInsert = TablesInsert<"tasks">;
 export type TaskUpdate = TablesUpdate<"tasks">;
+
+export type TaskHistory = Tables<"task_history">;
+export type TaskHistoryInsert = TablesInsert<"task_history">;
+export type TaskHistoryUpdate = TablesUpdate<"task_history">;
