@@ -9,10 +9,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "2b-crm@workspace:."
   dependencies:
+    "@supabase/ssr": ^0.12.7
+    "@supabase/supabase-js": ^2.118.0
     "@tailwindcss/turbopack": ^4
     "@types/node": ^20
     "@types/react": ^19
     "@types/react-dom": ^19
+    dotenv-cli: ^11.1.0
     eslint: ^9
     eslint-config-next: 16.4.4
     next: 16.4.4
@@ -785,6 +788,89 @@ __metadata:
   version: 1.1.0
   resolution: "@rtsao/scc@npm:1.1.0"
   checksum: 17d04adf404e04c1e61391ed97bca5117d4c2767a76ae3e879390d6dec7b317fcae68afbf9e98badee075d0b64fa60f287729c4942021b4d19cd01db77385c01
+  languageName: node
+  linkType: hard
+
+"@supabase/auth-js@npm:2.118.0":
+  version: 2.118.0
+  resolution: "@supabase/auth-js@npm:2.118.0"
+  dependencies:
+    tslib: 2.8.1
+  checksum: 30ef88e9e6676340e025c490914814050c9d7d11b9e5dd819f7ee416d648747b15c376a66f241389932b8e10e65654b17fc184ca34a5e7277c9159151fbdb329
+  languageName: node
+  linkType: hard
+
+"@supabase/functions-js@npm:2.118.0":
+  version: 2.118.0
+  resolution: "@supabase/functions-js@npm:2.118.0"
+  dependencies:
+    tslib: 2.8.1
+  checksum: 282ab83aaef12f60e6ab5111dff00dd4c67b871d6c2f21310177ee6ed917da3fe7d3d401932e0d2e214e2f525958bce2f288d4a550da70b24c23ff9521d5dbe3
+  languageName: node
+  linkType: hard
+
+"@supabase/phoenix@npm:0.4.5":
+  version: 0.4.5
+  resolution: "@supabase/phoenix@npm:0.4.5"
+  checksum: 49dd1dad8083df687fa54cbaa75f65cd5900b13e2f193c2e266ac8a2c7a71f1a250db748ef01297845533f9a9cb62c8f867e93058ecb05c003208276092601d4
+  languageName: node
+  linkType: hard
+
+"@supabase/postgrest-js@npm:2.118.0":
+  version: 2.118.0
+  resolution: "@supabase/postgrest-js@npm:2.118.0"
+  dependencies:
+    tslib: 2.8.1
+  checksum: d78a2478dafd21d03225b3b5d81ce6ca0c027edab8284c2579a07015cfc96dfab6c9eed39a08f3b1b9132ea583eabb4611e72689e7a1efdbcec527da4ea14635
+  languageName: node
+  linkType: hard
+
+"@supabase/realtime-js@npm:2.118.0":
+  version: 2.118.0
+  resolution: "@supabase/realtime-js@npm:2.118.0"
+  dependencies:
+    "@supabase/phoenix": 0.4.5
+    tslib: 2.8.1
+  checksum: d3ab2068160cf12a5a830481d312b343bc6bf4f81cbc544d8ffc7bafad18e8b7d06c24fd8a66d13da18d6479b8832d68f9f110593d6e5610480db19dab755cb6
+  languageName: node
+  linkType: hard
+
+"@supabase/ssr@npm:^0.12.7":
+  version: 0.12.7
+  resolution: "@supabase/ssr@npm:0.12.7"
+  dependencies:
+    cookie: ^1.0.2
+  peerDependencies:
+    "@supabase/supabase-js": ^2.114.0
+  checksum: a595a7300a54c2b4cdf5c133d5c0f0b90fe18d1ab6e3b14709a5a6f04b922b08bec5e63d789d708fbf40a35a7a7140a7f724324c3b475c2ba687bb085fc50260
+  languageName: node
+  linkType: hard
+
+"@supabase/storage-js@npm:2.118.0":
+  version: 2.118.0
+  resolution: "@supabase/storage-js@npm:2.118.0"
+  dependencies:
+    iceberg-js: ^0.8.1
+    tslib: 2.8.1
+  checksum: 315f99d47b8ba22885a146c68712545ca790f8765cf0a37921b7686ab91a83fe8e5d1ff2e8187ca99d83b17cb2feca642420378072287fd757c60d7ac5f1f54b
+  languageName: node
+  linkType: hard
+
+"@supabase/supabase-js@npm:^2.118.0":
+  version: 2.118.0
+  resolution: "@supabase/supabase-js@npm:2.118.0"
+  dependencies:
+    "@supabase/auth-js": 2.118.0
+    "@supabase/functions-js": 2.118.0
+    "@supabase/postgrest-js": 2.118.0
+    "@supabase/realtime-js": 2.118.0
+    "@supabase/storage-js": 2.118.0
+  peerDependencies:
+    "@opentelemetry/api": ">=1.0.0"
+  peerDependenciesMeta:
+    "@opentelemetry/api":
+      optional: true
+  checksum: 8bf2de9fc7732dd3063f48ac38a95e26038f4cae55d5966c1629ed50f584b327345b73e764f4bc91a1d1e7f53d987a455f295cb855ada0f2a10e419dc66b0f83
   languageName: node
   linkType: hard
 
@@ -1662,6 +1748,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cookie@npm:^1.0.2":
+  version: 1.1.1
+  resolution: "cookie@npm:1.1.1"
+  checksum: e40c4ff817a73ec0a41413654ca9a71e6207bd6e511151bb1d307aef2903eb59771127a85474afe0e12a8982804f7b03cce0bda798b55c306aca9608b4b9acab
+  languageName: node
+  linkType: hard
+
 "cross-spawn@npm:^7.0.6":
   version: 7.0.6
   resolution: "cross-spawn@npm:7.0.6"
@@ -1783,6 +1876,44 @@ __metadata:
   dependencies:
     esutils: ^2.0.2
   checksum: a45e277f7feaed309fe658ace1ff286c6e2002ac515af0aaf37145b8baa96e49899638c7cd47dccf84c3d32abfc113246625b3ac8f552d1046072adee13b0dc8
+  languageName: node
+  linkType: hard
+
+"dotenv-cli@npm:^11.1.0":
+  version: 11.1.0
+  resolution: "dotenv-cli@npm:11.1.0"
+  dependencies:
+    cross-spawn: ^7.0.6
+    dotenv: ^17.1.0
+    dotenv-expand: ^12.0.0
+    minimist: ^1.2.6
+  bin:
+    dotenv: cli.js
+    dotenv-cli: cli.js
+  checksum: 923ad4a6ebe120b3435a3ad31f49b6763a51d038f58ec59a630dbe8eb9a86ddd00dd9424adf65184434078d890e6155a54e3156f28ab813d0f78b2bd72945812
+  languageName: node
+  linkType: hard
+
+"dotenv-expand@npm:^12.0.0":
+  version: 12.0.3
+  resolution: "dotenv-expand@npm:12.0.3"
+  dependencies:
+    dotenv: ^16.4.5
+  checksum: c2de321a3569981197e381be15cd982fe7b325fb234803081cd3c2e2ab725fcc66559e652ff053e176c745218f5ebe105922f87b2922bec55c715c0836a1f3f2
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^16.4.5":
+  version: 16.6.1
+  resolution: "dotenv@npm:16.6.1"
+  checksum: e8bd63c9a37f57934f7938a9cf35de698097fadf980cb6edb61d33b3e424ceccfe4d10f37130b904a973b9038627c2646a3365a904b4406514ea94d7f1816b69
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^17.1.0":
+  version: 17.4.2
+  resolution: "dotenv@npm:17.4.2"
+  checksum: 217bf2c4696ca40acc13ad063341e9c77cedfdd75e56e4919f4cf2c6333e4f7b38a4b4067e49d006125502a61060cbe85c7eecb0644e4d99ff014693eb7e62c4
   languageName: node
   linkType: hard
 
@@ -2612,6 +2743,13 @@ __metadata:
   dependencies:
     hermes-estree: 0.25.1
   checksum: 4edcfaa3030931343b540182b83c432aba4cdcb1925952521ab4cfb7ab90c2c1543dfcb042ccd51d5e81e4bfe2809420e85902c2ff95ef7c6c64644ce17138ea
+  languageName: node
+  linkType: hard
+
+"iceberg-js@npm:^0.8.1":
+  version: 0.8.1
+  resolution: "iceberg-js@npm:0.8.1"
+  checksum: 679e52f82a285b3e1da69bfb7c6c54af95067ca56293299b4ffcc196329a4f2eeb1502fe55c0b44cc80e9eb1bf34001b76ee9f0e13268a753d0cfe8d27072e56
   languageName: node
   linkType: hard
 
@@ -4182,6 +4320,13 @@ __metadata:
     minimist: ^1.2.6
     strip-bom: ^3.0.0
   checksum: 59f35407a390d9482b320451f52a411a256a130ff0e7543d18c6f20afab29ac19fbe55c360a93d6476213cc335a4d76ce90f67df54c4e9037f7d240920832201
+  languageName: node
+  linkType: hard
+
+"tslib@npm:2.8.1":
+  version: 2.8.1
+  resolution: "tslib@npm:2.8.1"
+  checksum: e4aba30e632b8c8902b47587fd13345e2827fa639e7c3121074d5ee0880723282411a8838f830b55100cbe4517672f84a2472667d355b81e8af165a55dc6203a
   languageName: node
   linkType: hard
 
