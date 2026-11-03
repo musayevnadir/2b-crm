@@ -27,6 +27,7 @@ __metadata:
     radix-ui: ^1.8.1
     react: 19.3.0
     react-dom: 19.3.0
+    sonner: ^2.0.8
     tailwind-merge: ^3.7.0
     tailwindcss: ^4
     tw-animate-css: ^1.4.0
@@ -5655,6 +5656,20 @@ __metadata:
     side-channel-map: ^1.0.1
     side-channel-weakmap: ^1.0.2
   checksum: e0f217140c463636ee556260bbc8f47ba2931f1248826f58e1502704135814c763b325dd9ab122a04176aa45b4a4f8cc556415bcab7a0179d85250fb7812f063
+  languageName: node
+  linkType: hard
+
+"sonner@npm:^2.0.8":
+  version: 2.0.8
+  resolution: "sonner@npm:2.0.8"
+  peerDependencies:
+    "@types/react": ^18.0.0 || ^19.0.0
+    react: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+    react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 494270b1c223728c4a6d4d19883854b0dc4122deb4f269dcce8268e496d184cb48862e3e9a0ead5c13de26dda01eda4da648f413022935d0949535386c1db748
   languageName: node
   linkType: hard
 
