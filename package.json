@@ -10,7 +10,10 @@
     "type-check": "tsc --noEmit",
     "gen-types": "dotenv -e .env.development -- sh -c 'supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > src/types/database.generated.ts'",
     "format": "prettier --write .",
-    "check": "yarn type-check && yarn lint"
+    "check": "yarn type-check && yarn lint",
+    "db:push": "supabase db push && yarn gen-types",
+    "db:new": "supabase migration new",
+    "db:status": "supabase migration list"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
