@@ -62,6 +62,61 @@ export type Database = {
         }
         Relationships: []
       }
+      tasks: {
+        Row: {
+          assignee_id: string
+          author_id: string
+          created_at: string
+          description: string
+          id: string
+          object_id: string
+          status: Database["public"]["Enums"]["task_status"]
+          title: string
+        }
+        Insert: {
+          assignee_id: string
+          author_id?: string
+          created_at?: string
+          description?: string
+          id?: string
+          object_id: string
+          status?: Database["public"]["Enums"]["task_status"]
+          title: string
+        }
+        Update: {
+          assignee_id?: string
+          author_id?: string
+          created_at?: string
+          description?: string
+          id?: string
+          object_id?: string
+          status?: Database["public"]["Enums"]["task_status"]
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tasks_assignee_id_fkey"
+            columns: ["assignee_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tasks_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tasks_object_id_fkey"
+            columns: ["object_id"]
+            isOneToOne: false
+            referencedRelation: "objects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -70,6 +125,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      task_status: "new" | "in_progress" | "review" | "accepted" | "rework"
       user_role: "manager" | "executor"
     }
     CompositeTypes: {
@@ -198,6 +254,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      task_status: ["new", "in_progress", "review", "accepted", "rework"],
       user_role: ["manager", "executor"],
     },
   },
