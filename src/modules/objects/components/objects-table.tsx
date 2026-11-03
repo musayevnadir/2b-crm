@@ -24,19 +24,19 @@ type ObjectsTableProps = {
 export function ObjectsTable({ objects, canDelete }: ObjectsTableProps) {
   return (
     <div className="overflow-hidden rounded-xl border bg-background">
-      <Table>
+      <Table className="table-fixed">
         <TableHeader>
           <TableRow>
-            <TableHead>Название</TableHead>
+            <TableHead className="w-2/5">Название</TableHead>
             <TableHead>Адрес</TableHead>
-            <TableHead className="hidden sm:table-cell">Создан</TableHead>
+            <TableHead className="hidden w-32 sm:table-cell">Создан</TableHead>
             <TableHead className={canDelete ? "w-24" : "w-10"} />
           </TableRow>
         </TableHeader>
         <TableBody>
           {objects.map((object) => (
             <TableRow key={object.id} className="group relative">
-              <TableCell className="font-medium">
+              <TableCell className="truncate font-medium">
                 <Link
                   href={ROUTES.object(object.id)}
                   className="after:absolute after:inset-0"
@@ -44,7 +44,7 @@ export function ObjectsTable({ objects, canDelete }: ObjectsTableProps) {
                   {object.name}
                 </Link>
               </TableCell>
-              <TableCell className="text-muted-foreground">
+              <TableCell className="truncate text-muted-foreground">
                 {object.address}
               </TableCell>
               <TableCell className="hidden text-muted-foreground sm:table-cell">

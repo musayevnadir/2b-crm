@@ -25,24 +25,24 @@ type TasksTableProps = {
 export function TasksTable({ tasks, show, from }: TasksTableProps) {
   return (
     <div className="overflow-hidden rounded-xl border bg-background">
-      <Table>
+      <Table className="table-fixed">
         <TableHeader>
           <TableRow>
             <TableHead>Задача</TableHead>
-            <TableHead>Статус</TableHead>
+            <TableHead className="w-36">Статус</TableHead>
             {show !== "none" && (
-              <TableHead className="hidden md:table-cell">
+              <TableHead className="hidden w-60 md:table-cell">
                 {show === "assignee" ? "Исполнитель" : "Объект"}
               </TableHead>
             )}
-            <TableHead className="hidden sm:table-cell">Создана</TableHead>
+            <TableHead className="hidden w-32 sm:table-cell">Создана</TableHead>
             <TableHead className="w-10" />
           </TableRow>
         </TableHeader>
         <TableBody>
           {tasks.map((task) => (
             <TableRow key={task.id} className="group relative">
-              <TableCell className="font-medium">
+              <TableCell className="truncate font-medium">
                 <Link
                   href={ROUTES.task(task.id, from)}
                   className="after:absolute after:inset-0"
@@ -54,7 +54,7 @@ export function TasksTable({ tasks, show, from }: TasksTableProps) {
                 <StatusBadge status={task.status} />
               </TableCell>
               {show !== "none" && (
-                <TableCell className="hidden text-muted-foreground md:table-cell">
+                <TableCell className="hidden truncate text-muted-foreground md:table-cell">
                   {show === "assignee"
                     ? fullName(task.assignee)
                     : (task.object?.name ?? "—")}
