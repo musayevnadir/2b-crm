@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Объекты и задачи
 
-## Getting Started
+Мини-CRM для строительной компании. Постановщик создаёт объекты и задачи, исполнитель выполняет свои задачи и отправляет на проверку.
 
-First, run the development server:
+Демо: https://2b-crm.vercel.app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Тестовые пользователи
+
+Регистрации в приложении нет, пользователи создаются вручную в Supabase.
+
+| Роль        | Email                 | Пароль         |
+| ----------- | --------------------- | -------------- |
+| Постановщик | manager@example.com   | Admin123!      |
+| Исполнитель | executor1@example.com | Executor1!@123 |
+| Исполнитель | executor2@example.com | Executor1!@345 |
+
+## Стек
+
+Next.js, TypeScript, Supabase, Tailwind, shadcn/ui, React Hook Form, Zod.
+
+## Локальный запуск
+
+Значения для `.env.development` отправлены в личном сообщении. С ними проект подключится к той же базе, что и демо, все пользователи и данные уже есть.
+
+1. Создайте в корне проекта файл `.env.development` и вставьте присланные значения:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
+SUPABASE_PROJECT_ID=
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Установите зависимости и запустите:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn install
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Приложение откроется на http://localhost:3000
 
-## Learn More
+## Своя база Supabase
 
-To learn more about Next.js, take a look at the following resources:
+Если нужно поднять проект на своей базе:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+supabase link --project-ref <project-ref>
+yarn db:push
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Пользователей создаёте в Supabase (Authentication → Users). По умолчанию роль исполнителя, постановщика назначаете так:
 
-## Deploy on Vercel
+```sql
+update public.profiles set role = 'manager' where email = '...';
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Где смотреть код
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`supabase/migrations`: таблицы, RLS-политики, функция смены статуса и триггеры. Вся защита данных здесь.
+
+`src/services`: все запросы к Supabase.
+
+`src/modules`: экраны и формы: вход, объекты, задачи.
+
+`src/config/task-transitions.ts`: какие кнопки статусов видит пользователь.
+
+## Безопасность
+
+Права проверяются в базе через RLS, поэтому их не обойти прямым запросом к Supabase. Статус меняется только функцией `change_task_status`, она проверяет роль и допустимый переход. История пишется триггером, изменить или удалить её нельзя. Регистрация отключена.
+
+Проверка: `yarn test:security`
+
+## Проверка кода
+
+```bash
+yarn check
+```
+
+TypeScript и ESLint.
