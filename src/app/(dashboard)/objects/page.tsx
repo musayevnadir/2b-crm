@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 
-import { Building2 } from "lucide-react";
+import { Building2, Plus } from "lucide-react";
 
 import { FormError } from "@/components/form";
 import { EmptyState } from "@/components/layout/empty-state";
+import { Page } from "@/components/layout/page";
 import { PageHeader } from "@/components/layout/page-header";
+import { Button } from "@/components/ui/button";
 import { getCurrentProfile } from "@/lib/auth/get-current-profile";
 import { createClient } from "@/lib/supabase/server";
-import { ObjectsTable } from "@/modules/objects";
+import { ObjectFormDialog, ObjectsTable } from "@/modules/objects";
 import { ObjectsAPI } from "@/services/api/objects.api";
 
 export const metadata: Metadata = { title: "Объекты · Объекты и задачи" };
@@ -20,8 +22,19 @@ export default async function ObjectsPage() {
   const response = await ObjectsAPI.list(supabase);
   const isManager = profile?.role === "manager";
 
+  const createButton = isManager && (
+    <ObjectFormDialog
+      trigger={
+        <Button>
+          <Plus className="size-4" />
+          Новый объект
+        </Button>
+      }
+    />
+  );
+
   return (
-    <div className="space-y-6">
+    <Page>
       <PageHeader
         title="Объекты"
         description={
@@ -29,6 +42,7 @@ export default async function ObjectsPage() {
             ? "Все стройки компании"
             : "Стройки, на которых у вас есть задачи"
         }
+        action={createButton}
       />
       {!response.result ? (
         <FormError message="Не удалось загрузить объекты" />
@@ -43,6 +57,6 @@ export default async function ObjectsPage() {
       ) : (
         <ObjectsTable objects={response.data} />
       )}
-    </div>
+    </Page>
   );
 }
