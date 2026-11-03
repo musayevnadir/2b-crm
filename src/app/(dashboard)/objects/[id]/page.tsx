@@ -82,7 +82,11 @@ export default async function ObjectPage({
             action={createTaskButton}
           />
         ) : (
-          <TasksTable tasks={tasks} show="assignee" />
+          <TasksTable
+            tasks={tasks}
+            show={isManager ? "assignee" : "none"}
+            from="object"
+          />
         )}
       </section>
     </Page>

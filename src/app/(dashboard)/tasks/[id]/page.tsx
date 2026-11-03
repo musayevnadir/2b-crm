@@ -18,8 +18,11 @@ import { TaskHistoryAPI } from "@/services/api/task-history.api";
 import { TasksAPI } from "@/services/api/tasks.api";
 import { getCurrentProfile } from "@/services/session";
 
-export default async function TaskPage({ params }: PageProps<"/tasks/[id]">) {
-  const { id } = await params;
+export default async function TaskPage({
+  params,
+  searchParams,
+}: PageProps<"/tasks/[id]">) {
+  const [{ id }, { from }] = await Promise.all([params, searchParams]);
   const [profile, supabase] = await Promise.all([
     getCurrentProfile(),
     createClient(),
@@ -36,13 +39,14 @@ export default async function TaskPage({ params }: PageProps<"/tasks/[id]">) {
   if (!task) notFound();
 
   const isAssignee = task.assignee_id === profile?.id;
+  const backToObject = isManager || from === "object";
 
   return (
     <Page>
       <BackLink
-        href={isManager ? ROUTES.object(task.object_id) : ROUTES.myTasks}
+        href={backToObject ? ROUTES.object(task.object_id) : ROUTES.myTasks}
       >
-        {isManager ? (task.object?.name ?? "К объекту") : "Мои задачи"}
+        {backToObject ? (task.object?.name ?? "К объекту") : "Мои задачи"}
       </BackLink>
 
       <PageHeader

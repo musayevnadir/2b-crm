@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ROUTES } from "@/config/routes";
+import { ROUTES, type TaskFrom } from "@/config/routes";
 import { formatDate, fullName } from "@/lib/format";
 import type { TaskListItem } from "@/types";
 
@@ -18,10 +18,11 @@ import { StatusBadge } from "./status-badge";
 
 type TasksTableProps = {
   tasks: TaskListItem[];
-  show: "assignee" | "object";
+  show: "assignee" | "object" | "none";
+  from: TaskFrom;
 };
 
-export function TasksTable({ tasks, show }: TasksTableProps) {
+export function TasksTable({ tasks, show, from }: TasksTableProps) {
   return (
     <div className="overflow-hidden rounded-xl border bg-background">
       <Table>
@@ -29,9 +30,11 @@ export function TasksTable({ tasks, show }: TasksTableProps) {
           <TableRow>
             <TableHead>Задача</TableHead>
             <TableHead>Статус</TableHead>
-            <TableHead className="hidden md:table-cell">
-              {show === "assignee" ? "Исполнитель" : "Объект"}
-            </TableHead>
+            {show !== "none" && (
+              <TableHead className="hidden md:table-cell">
+                {show === "assignee" ? "Исполнитель" : "Объект"}
+              </TableHead>
+            )}
             <TableHead className="hidden sm:table-cell">Создана</TableHead>
             <TableHead className="w-10" />
           </TableRow>
@@ -41,7 +44,7 @@ export function TasksTable({ tasks, show }: TasksTableProps) {
             <TableRow key={task.id} className="group relative">
               <TableCell className="font-medium">
                 <Link
-                  href={ROUTES.task(task.id)}
+                  href={ROUTES.task(task.id, from)}
                   className="after:absolute after:inset-0"
                 >
                   {task.title}
@@ -50,11 +53,13 @@ export function TasksTable({ tasks, show }: TasksTableProps) {
               <TableCell>
                 <StatusBadge status={task.status} />
               </TableCell>
-              <TableCell className="hidden text-muted-foreground md:table-cell">
-                {show === "assignee"
-                  ? fullName(task.assignee)
-                  : (task.object?.name ?? "—")}
-              </TableCell>
+              {show !== "none" && (
+                <TableCell className="hidden text-muted-foreground md:table-cell">
+                  {show === "assignee"
+                    ? fullName(task.assignee)
+                    : (task.object?.name ?? "—")}
+                </TableCell>
+              )}
               <TableCell className="hidden text-muted-foreground sm:table-cell">
                 {formatDate(task.created_at)}
               </TableCell>
