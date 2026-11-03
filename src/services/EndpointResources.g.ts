@@ -7,6 +7,5 @@ export const EndpointResources = {
   },
   rpc: {
     changeTaskStatus: "change_task_status",
-    isManager: "is_manager",
   },
 } as const;
